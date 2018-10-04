@@ -11,6 +11,7 @@ import java.util.List;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.marpunk.core.word.Words.END;
 import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -19,6 +20,7 @@ import static org.mockito.Mockito.when;
  *
  */
 public class SentenceGeneratorTest {
+
     private Words words = mock(Words.class);
     private RandomGenerator randomGenerator = mock(RandomGenerator.class);
     private SentenceGenerator generator = new SentenceGenerator(words, randomGenerator);
@@ -28,7 +30,7 @@ public class SentenceGeneratorTest {
     @Before
     public void init(){
         when(randomGenerator.getIntBetween(eq(0),anyInt())).thenReturn(0);
-        when(words.findCandidatFor(any(Word.class))).thenReturn(Arrays.asList(Word.END));
+        when(words.findCandidatFor(any(Word.class))).thenReturn(Arrays.asList(END));
     }
 
     @Test
@@ -51,7 +53,7 @@ public class SentenceGeneratorTest {
         given_a_starting_words(asList(word("je"),word("tu")));
         and("je").is_followed_by("suis");
         and("suis").is_followed_by(".");
-        and(".").is_followed_by(Word.END);
+        and(".").is_followed_by(END);
         when_we_generate_sentence();
         assertThat(result).isNotNull().isEqualTo(sentence("je","suis","."));
     }
@@ -61,7 +63,7 @@ public class SentenceGeneratorTest {
         given_a_starting_words(asList(word("je"), word("tu")));
         and("je").is_followed_by("suis", "vais", "rentre");
         and_choose_index(1);
-        and("vais").is_followed_by(Word.END);
+        and("vais").is_followed_by(END);
         when_we_generate_sentence();
         assertThat(result).isNotNull().isEqualTo(sentence("je","vais"));
     }

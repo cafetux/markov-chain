@@ -5,7 +5,6 @@ package org.marpunk.core.word;
  */
 public class Word {
 
-    public static final Word END = new Word("-END-");
     private String value;
 
     private Word(String value) {

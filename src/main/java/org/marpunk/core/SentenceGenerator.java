@@ -5,6 +5,8 @@ import org.marpunk.core.word.Words;
 
 import java.util.List;
 
+import static org.marpunk.infra.word.InMemoryWords.END;
+
 /**
  *
  */
@@ -26,7 +28,7 @@ public class SentenceGenerator {
         int count = 0;
         while(count++<LENGTH_LIMIT) {
             nextWord = chooseNextWord(nextWord);
-            if (nextWord == Word.END) {
+            if (nextWord == END) {
                 return sentence;
             }
             sentence.add(nextWord);

@@ -3,12 +3,13 @@ package org.marpunk.core;
 import org.marpunk.core.word.Word;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  */
-public class Sentence {
+public class Sentence implements Iterable<Word> {
 
     private List<Word> words = new ArrayList<>();
 
@@ -21,25 +22,13 @@ public class Sentence {
     }
 
     @Override
-    public String toString() {
-        return words.stream().map(Word::toString).reduce("",(w,w2)-> w+" "+w2);
-    }
-
-    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
         Sentence sentence = (Sentence) o;
-        if(this.countWords() != sentence.countWords()){
-            return false;
-        }
 
         return sentence.words.equals(this.words);
-    }
-
-    public int countWords() {
-        return words.size();
     }
 
     @Override
@@ -49,5 +38,10 @@ public class Sentence {
 
     public void add(Word nextWord) {
         this.words.add(nextWord);
+    }
+
+    @Override
+    public Iterator<Word> iterator() {
+        return words.iterator();
     }
 }
