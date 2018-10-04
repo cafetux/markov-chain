@@ -1,5 +1,8 @@
 package org.marpunk.core;
 
+import org.marpunk.core.word.Word;
+import org.marpunk.core.word.Words;
+
 import java.util.List;
 
 /**

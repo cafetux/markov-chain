@@ -2,6 +2,8 @@ package org.marpunk.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.marpunk.core.word.Word;
+import org.marpunk.core.word.Words;
 
 import java.util.Arrays;
 import java.util.List;

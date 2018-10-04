@@ -1,4 +1,4 @@
-package org.marpunk.core;
+package org.marpunk.core.word;
 
 /**
  *

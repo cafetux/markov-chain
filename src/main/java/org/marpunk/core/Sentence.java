@@ -1,5 +1,7 @@
 package org.marpunk.core;
 
+import org.marpunk.core.word.Word;
+
 import java.util.ArrayList;
 import java.util.List;
 
