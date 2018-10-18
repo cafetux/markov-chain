@@ -41,6 +41,13 @@ public class Sentence implements Iterable<Word> {
     }
 
     @Override
+    public String toString() {
+        return "Sentence{" +
+                "words=" + words +
+                '}';
+    }
+
+    @Override
     public Iterator<Word> iterator() {
         return words.iterator();
     }
