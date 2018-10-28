@@ -2,6 +2,7 @@ package org.marpunk.core;
 
 import org.marpunk.core.word.Word;
 import org.marpunk.core.word.Words;
+import org.marpunk.infra.SystemRandom;
 
 import java.util.List;
 
@@ -20,6 +21,10 @@ public class SentenceGenerator {
     public SentenceGenerator(Words words, RandomGenerator randomGenerator) {
         this.words=words;
         this.randomGenerator = randomGenerator;
+    }
+
+    public SentenceGenerator(Words words) {
+        this(words, new SystemRandom());
     }
 
     public Sentence generateSentence() {
