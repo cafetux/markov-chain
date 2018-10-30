@@ -5,6 +5,9 @@ import org.marpunk.core.word.Word;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 /**
  *
@@ -47,8 +50,26 @@ public class Sentence implements Iterable<Word> {
                 '}';
     }
 
+    public String format() {
+        return words.stream().map(Word::toString).collect(Collectors.joining(" "))
+                .replace("' ", "'")
+                .replace(" ;",";")
+                .replace(" :",":")
+                .replace(" .",".")
+                .replace(" ,", ",");
+    }
+
+    public int size(){
+        return words.size();
+    }
+
     @Override
     public Iterator<Word> iterator() {
         return words.iterator();
     }
+
+    public Stream<Word> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
 }
