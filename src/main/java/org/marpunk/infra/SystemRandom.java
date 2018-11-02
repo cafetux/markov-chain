@@ -12,7 +12,12 @@ public class SystemRandom implements RandomGenerator{
 
     @Override
     public int getIntBetween(int start, int end) {
-        return random.nextInt(end-start+1)+start;
+
+        int bound = end - start + 1;
+        if(bound <= 0){
+            throw new IllegalArgumentException("start value "+start+" and end value "+end+" have invalid bound of "+bound);
+        }
+        return random.nextInt(bound)+start;
     }
 
 }
