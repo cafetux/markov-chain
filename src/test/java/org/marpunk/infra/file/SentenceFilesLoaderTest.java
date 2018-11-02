@@ -25,17 +25,17 @@ public class SentenceFilesLoaderTest {
         loader = new SentenceFilesLoader(path("text/victor_hugo"));
         List<Sentence> sentences = loader.load();
         assertThat(sentences.size()).isEqualTo(14);
-        assertThat(sentences.get(0)).isEqualTo(new Sentence(asList(word("Ouvrière"), word("sans"), word("yeux"), word(","), word("Pénélope"), word("imbécile"), word(","))));
+        assertThat(sentences.get(0)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word(","), word("pénélope"), word("imbécile"), word(","))));
     }
 
     @Test
     public void should_be_ponctuation_proof() throws Exception {
         loader = new SentenceFilesLoader(path("text/ponct"));
         List<Sentence> sentences = loader.load();
-        assertThat(sentences.get(0)).isEqualTo(new Sentence(asList(word("Ouvrière"), word("sans"), word("yeux"), word(";"), word("Pénélope"), word("imbécile"), word(","))));
-        assertThat(sentences.get(1)).isEqualTo(new Sentence(asList(word("Ouvrière"), word("sans"), word("yeux"), word("!"), word("Pénélope"), word("imbécile"), word(","))));
-        assertThat(sentences.get(2)).isEqualTo(new Sentence(asList(word("Ouvrière"), word("sans"), word("yeux"), word("?"), word("Pénélope"), word("imbécile"), word(","))));
-        assertThat(sentences.get(3)).isEqualTo(new Sentence(asList(word("Ouvrière"), word("sans"), word("yeux"), word(":"), word("Pénélope"), word("imbécile"), word(","))));
+        assertThat(sentences.get(0)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word(";"), word("pénélope"), word("imbécile"), word(","))));
+        assertThat(sentences.get(1)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word("!"), word("pénélope"), word("imbécile"), word(","))));
+        assertThat(sentences.get(2)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word("?"), word("pénélope"), word("imbécile"), word(","))));
+        assertThat(sentences.get(3)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word(":"), word("pénélope"), word("imbécile"), word(","))));
     }
 
     private Word word(String imbécile) {

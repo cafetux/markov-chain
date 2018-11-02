@@ -31,7 +31,9 @@ public class SentenceFilesLoader {
                         .filter(Files::isRegularFile)
                         .map(this::readAllLines)
                         .flatMap(Collection::stream)
-                        .filter(this::notBlank).collect(toList());
+                        .filter(this::notBlank)
+                        .map(String::toLowerCase)
+                        .collect(toList());
 
                 return lines.stream()
                         .map(splitter::split)
