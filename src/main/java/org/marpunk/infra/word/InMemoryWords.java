@@ -33,10 +33,15 @@ public class InMemoryWords implements Words {
     public void save(Sentence words) {
         Word previous = START;
         for (Word current : words) {
-            List<Word> wordLinks = links.getOrDefault(previous, new ArrayList<>());
-            wordLinks.add(current);
-            links.put(previous,wordLinks);
+            push(previous, current);
             previous=current;
         }
+        push(previous, END);
+    }
+
+    private void push(Word key, Word newValue) {
+        List<Word> wordLinks = links.getOrDefault(key, new ArrayList<>());
+        wordLinks.add(newValue);
+        links.put(key, wordLinks);
     }
 }

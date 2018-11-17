@@ -3,6 +3,7 @@ package org.marpunk.infra.word;
 import org.junit.Test;
 import org.marpunk.core.Sentence;
 import org.marpunk.core.word.Word;
+import org.marpunk.core.word.Words;
 
 import java.util.List;
 
@@ -45,6 +46,14 @@ public class InMemoryWordsTest {
         assertThat(words.getStartingWords()).containsExactly(word("je"),word("je"),word("je"),word("tu"));
         assertThat(words.findCandidatFor(word("je"))).as("'je' doit avoir comme candidat 'suis'").containsExactly(word("suis"),word("suis"),word("serais"));
         assertThat(words.findCandidatFor(word("suis"))).containsExactly(word("là"),word("partis"));
+    }
+
+    @Test
+    public void should_retrieve_end_word_when_no_candidat() {
+        given_a_sentence(asList(word("je"), word("suis"), word("là")));
+
+        assertThat(words.findCandidatFor(word("là"))).as("should find is end of sentence")
+                .containsExactly(Words.END);
     }
 
     private void given_a_sentence(List<Word> words) {
