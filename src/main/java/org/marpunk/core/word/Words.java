@@ -8,8 +8,8 @@ import java.util.List;
  *
  */
 public interface Words {
-    Word END = Word.from("-END-");
-    Word START = Word.from("-START-");
+    Word END = SimpleWord.from("-END-");
+    Word START = SimpleWord.from("-START-");
 
     List<Word> getStartingWords();
 

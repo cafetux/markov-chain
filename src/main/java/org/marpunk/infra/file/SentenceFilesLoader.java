@@ -17,10 +17,16 @@ import static java.util.stream.Collectors.toList;
 public class SentenceFilesLoader {
 
     private final Path root;
-    private final Splitter splitter = new Splitter();
+    private final Splitter splitter;
 
     public SentenceFilesLoader(Path root) {
         this.root = root;
+        splitter = new SimpleSplitter();
+    }
+
+    public SentenceFilesLoader(Path root, Splitter splitter) {
+        this.root = root;
+        this.splitter = splitter;
     }
 
     public List<Sentence> load() {

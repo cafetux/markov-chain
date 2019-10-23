@@ -2,7 +2,7 @@ package org.marpunk.infra.file;
 
 import org.junit.Test;
 import org.marpunk.core.Sentence;
-import org.marpunk.core.word.Word;
+import org.marpunk.core.word.SimpleWord;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -38,8 +38,8 @@ public class SentenceFilesLoaderTest {
         assertThat(sentences.get(3)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word(":"), word("pénélope"), word("imbécile"), word(","))));
     }
 
-    private Word word(String imbécile) {
-        return Word.from(imbécile);
+    private SimpleWord word(String imbécile) {
+        return SimpleWord.from(imbécile);
     }
 
     private Path path(String path) throws URISyntaxException {

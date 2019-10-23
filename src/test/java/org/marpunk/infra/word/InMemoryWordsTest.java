@@ -2,6 +2,8 @@ package org.marpunk.infra.word;
 
 import org.junit.Test;
 import org.marpunk.core.Sentence;
+import org.marpunk.core.GrammarWord;
+import org.marpunk.core.word.SimpleWord;
 import org.marpunk.core.word.Word;
 import org.marpunk.core.word.Words;
 
@@ -23,6 +25,18 @@ public class InMemoryWordsTest {
         assertThat(words.getStartingWords()).containsExactly(word("je"));
         assertThat(words.findCandidatFor(word("je"))).as("'je' doit avoir comme candidat 'suis'").containsExactly(word("suis"));
         assertThat(words.findCandidatFor(word("suis"))).as("'suis' doit avoir comme candidat 'là'").containsExactly(word("là"));
+    }
+
+    @Test
+    public void should_not_confuse_ajective_with_noun() {
+        given_a_sentence(asList(word("pronoun","je"), word("verb","vis"), word("preposition","à"), word("noun","Paris")));
+        given_a_sentence(asList(word("verb","passes"), word("pronoun","moi"), word("adverb","la"), word("noun","vis")));
+        assertThat(words.findCandidatFor(word("noun","vis"))).as("le nom 'vis' ne doit pas avoir de candidats").containsExactly(Words.END);
+        assertThat(words.findCandidatFor(word("verb","vis"))).as("le verbe 'vis' doit avoir comme candidat 'à'").containsExactly(word("preposition","à"));
+    }
+
+    private Word word(String key, String value) {
+        return GrammarWord.from(GrammarWord.GrammarType.from(key), value);
     }
 
     @Test
@@ -60,8 +74,8 @@ public class InMemoryWordsTest {
         this.words.save(new Sentence(words));
     }
 
-    private Word word(String là) {
-        return Word.from(là);
+    private SimpleWord word(String là) {
+        return SimpleWord.from(là);
     }
 
 }

@@ -2,6 +2,7 @@ package org.marpunk.core;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.marpunk.core.word.SimpleWord;
 import org.marpunk.core.word.Word;
 import org.marpunk.core.word.Words;
 
@@ -30,7 +31,7 @@ public class SentenceGeneratorTest {
     @Before
     public void init(){
         when(randomGenerator.getIntBetween(eq(0),anyInt())).thenReturn(0);
-        when(words.findCandidatFor(any(Word.class))).thenReturn(Arrays.asList(END));
+        when(words.findCandidatFor(any(SimpleWord.class))).thenReturn(Arrays.asList(END));
     }
 
     @Test
@@ -86,15 +87,15 @@ public class SentenceGeneratorTest {
 
     private static class TreeBuilder {
         private final Words words;
-        private final Word word;
+        private final SimpleWord word;
 
         private TreeBuilder(Words words,String value) {
             this.words = words;
-            this.word = Word.from(value);
+            this.word = SimpleWord.from(value);
         }
 
         public void is_followed_by(String... candidats){
-            when(words.findCandidatFor(word)).thenReturn(Arrays.stream(candidats).map(Word::from).collect(toList()));
+            when(words.findCandidatFor(word)).thenReturn(Arrays.stream(candidats).map(SimpleWord::from).collect(toList()));
         }
 
         public void is_followed_by(Word word) {
@@ -102,7 +103,7 @@ public class SentenceGeneratorTest {
         }
     }
     private Sentence sentence(String... value) {
-        List<Word> words = Arrays.stream(value).map(Word::from).collect(toList());
+        List<Word> words = Arrays.stream(value).map(SimpleWord::from).collect(toList());
         return new Sentence(words);
     }
 
@@ -114,8 +115,8 @@ public class SentenceGeneratorTest {
         when(this.words.getStartingWords()).thenReturn(words);
     }
 
-    private Word word(String value) {
-        return Word.from(value);
+    private SimpleWord word(String value) {
+        return SimpleWord.from(value);
     }
 
 }

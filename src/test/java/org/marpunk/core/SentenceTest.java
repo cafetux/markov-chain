@@ -1,6 +1,7 @@
 package org.marpunk.core;
 
 import org.junit.Test;
+import org.marpunk.core.word.SimpleWord;
 import org.marpunk.core.word.Word;
 
 import java.util.List;
@@ -25,8 +26,8 @@ public class SentenceTest {
         return new Sentence(words);
     }
 
-    private Word w(String bonjour) {
-        return Word.from(bonjour);
+    private SimpleWord w(String bonjour) {
+        return SimpleWord.from(bonjour);
     }
 
 }

@@ -3,7 +3,7 @@ package org.marpunk.infra.file;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.marpunk.core.word.Word.from;
+import static org.marpunk.core.word.SimpleWord.from;
 
 /**
  *
@@ -11,7 +11,7 @@ import static org.marpunk.core.word.Word.from;
 public class SplitterTest {
 
 
-    private Splitter splitter = new Splitter();
+    private SimpleSplitter splitter = new SimpleSplitter();
 
     @Test
     public void should_split_on_spaces(){
