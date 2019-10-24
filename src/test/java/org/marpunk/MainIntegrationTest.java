@@ -26,7 +26,7 @@ public class MainIntegrationTest {
 
         SentenceGenerator generator = new SentenceGenerator(words);
         for (int i = 0; i < 20; i++) {
-            System.out.println(generator.generateSentence());
+            System.out.println(generator.generateSentence().format());
         }
 
     }
