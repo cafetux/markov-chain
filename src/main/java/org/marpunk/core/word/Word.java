@@ -1,6 +1,8 @@
 package org.marpunk.core.word;
 
-public interface Word {
+import java.io.Serializable;
+
+public interface Word extends Serializable {
 
     String getKey();
 

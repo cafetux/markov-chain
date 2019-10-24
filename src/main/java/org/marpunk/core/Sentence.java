@@ -2,6 +2,7 @@ package org.marpunk.core;
 
 import org.marpunk.core.word.Word;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -12,9 +13,12 @@ import java.util.stream.StreamSupport;
 /**
  *
  */
-public class Sentence implements Iterable<Word> {
+public class Sentence implements Iterable<Word>, Serializable {
 
     private List<Word> words = new ArrayList<>();
+
+    private Sentence() {
+    }
 
     public Sentence(Word value) {
         this.words.add(value);
@@ -51,7 +55,7 @@ public class Sentence implements Iterable<Word> {
     }
 
     public String format() {
-        return words.stream().map(Word::toString).collect(Collectors.joining(" "))
+        return words.stream().map(Word::getValue).collect(Collectors.joining(" "))
                 .replace("' ", "'")
                 .replace(" ;",";")
                 .replace(" :",":")

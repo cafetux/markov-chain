@@ -17,16 +17,16 @@ import static java.util.Collections.unmodifiableList;
  */
 public class InMemoryWords implements Words {
 
-    private Map<Word,List<Word>> links = new HashMap<>();
+    private Map<String,List<Word>> links = new HashMap<>();
 
     @Override
     public List<Word> getStartingWords() {
-        return unmodifiableList(links.getOrDefault(START, emptyList()));
+        return unmodifiableList(links.getOrDefault(START.getKey(), emptyList()));
     }
 
     @Override
     public List<Word> findCandidatFor(Word word) {
-        return unmodifiableList(links.getOrDefault(word, emptyList()));
+        return unmodifiableList(links.getOrDefault(word.getKey(), emptyList()));
     }
 
     @Override
@@ -40,8 +40,8 @@ public class InMemoryWords implements Words {
     }
 
     private void push(Word key, Word newValue) {
-        List<Word> wordLinks = links.getOrDefault(key, new ArrayList<>());
+        List<Word> wordLinks = links.getOrDefault(key.getKey(), new ArrayList<>());
         wordLinks.add(newValue);
-        links.put(key, wordLinks);
+        links.put(key.getKey(), wordLinks);
     }
 }

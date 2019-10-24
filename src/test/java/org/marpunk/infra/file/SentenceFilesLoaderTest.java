@@ -38,8 +38,8 @@ public class SentenceFilesLoaderTest {
         assertThat(sentences.get(3)).isEqualTo(new Sentence(asList(word("ouvrière"), word("sans"), word("yeux"), word(":"), word("pénélope"), word("imbécile"), word(","))));
     }
 
-    private SimpleWord word(String imbécile) {
-        return SimpleWord.from(imbécile);
+    private SimpleWord word(String word) {
+        return SimpleWord.from(word);
     }
 
     private Path path(String path) throws URISyntaxException {
